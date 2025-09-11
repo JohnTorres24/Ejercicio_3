@@ -14,7 +14,7 @@ public class Principal {
             System.out.println("1. Dados 2 ");
             System.out.println("2. Dados 3 ");
             System.out.println("3. IMC ");
-            System.out.println("4.");
+            System.out.println("4. Formula 1");
             System.out.println("5.");
             System.out.println("6. Salir");
             System.out.println("Elige una opcion ");
@@ -33,7 +33,8 @@ public class Principal {
                     System.out.println(IMC());
                     break;
                 case 4:
-                    System.out.println("Elegiste 4 (vacia por ahora) ");
+                    System.out.println("Elegiste Formula 1 ");
+                    F1();
                     break;
                 case 5:
                     System.out.println("Elegiste 5 ( vacia por ahora)");
@@ -155,5 +156,35 @@ public class Principal {
             situacion = "Obesidad extrema";
         }
         return "Situacion "+situacion;
+    }
+    public static void F1(){
+        Scanner cantidad= new Scanner(System.in);
+        Random vueltas= new Random();
+        System.out.println("Ingrese el numero de pilotos: ");
+        int n = cantidad.nextInt();
+        String[]pilotos= new String[n];
+        int[]tiempos =new int[n];
+        for (int i=0; i<n;i++){
+            System.out.println("Nombre del piloto: ");
+            pilotos[i]=cantidad.next();
+            tiempos[i]=vueltas.nextInt((100-50)+1)+50;
+        }
+        //orden tiempos
+        for (int i=0;i<n-1;i++){
+            for (int j=0;j<n-1-i;j++){
+                if (tiempos[j]>tiempos[j+1]){
+                    int tempTiempo= tiempos[j];
+                    tiempos[j]=tiempos[j+1];
+                    tiempos[j+1]= tempTiempo;
+                    String tempPiloto=pilotos[j];
+                    pilotos[j]=pilotos[j+1];
+                    pilotos[j+1]=tempPiloto;
+                }
+            }
+        }
+        System.out.println("\n===RESULTADOS DE LA CARRERA=== ");
+        for (int i=0;i<n;i++){
+            System.out.println((i+1)+"°Lugar: "+ pilotos[i]+ " - Tiempo: " + tiempos[i]+ "s");
+        }
     }
 }
