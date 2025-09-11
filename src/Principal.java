@@ -15,7 +15,7 @@ public class Principal {
             System.out.println("2. Dados 3 ");
             System.out.println("3. IMC ");
             System.out.println("4. Formula 1");
-            System.out.println("5.");
+            System.out.println("5. Juego Dados");
             System.out.println("6. Salir");
             System.out.println("Elige una opcion ");
             opcion = teclado.nextInt();
@@ -37,7 +37,8 @@ public class Principal {
                     F1();
                     break;
                 case 5:
-                    System.out.println("Elegiste 5 ( vacia por ahora)");
+                    System.out.println("Elegiste Juego Dados");
+                    JuegoDados();
                 case 6:
                     System.out.println("Saliendo del programa.....:)");
                     break;
@@ -89,38 +90,38 @@ public class Principal {
             sumaDado1 = sumaDado1 + dado1;
             sumaDado2 = sumaDado2 + dado2;
             sumaDado3 = sumaDado3 + dado3;
-            System.out.println("Ronda " + i + " Dado 1: " + dado1 + " Dado2: " + dado2 + " Dado3: ");
+            System.out.println("Ronda " + i + " Dado 1: " + dado1 + " Dado2: " + dado2 + " Dado3: "+dado3);
         }
         System.out.println(" Resultados finales:");
         System.out.println(" Dado 1:" + sumaDado1);
         System.out.println(" Dado 2:" + sumaDado2);
         System.out.println(" Dado 3:" + sumaDado3);
         if (sumaDado1 >= sumaDado2 && sumaDado1 >= sumaDado3) {
-            primero = "Dado 1 (" + sumaDado1 + ")";
+            primero = "Dado 1 ( " + sumaDado1 + " )";
             if (sumaDado2 >= sumaDado3) {
-                segundo = "Dado2 ( " + sumaDado2 + ")";
-                tercero = "Dado3 ( " + sumaDado3 + ")";
+                segundo = "Dado2 ( " + sumaDado2 + " )";
+                tercero = "Dado3 ( " + sumaDado3 + " )";
             } else {
-                segundo = "Dado3 ( " + sumaDado3 + ")";
-                tercero = "Dado2 ( " + sumaDado2 + ")";
+                segundo = "Dado3 ( " + sumaDado3 + " )";
+                tercero = "Dado2 ( " + sumaDado2 + " )";
             }
         } else if (sumaDado2 >= sumaDado1 && sumaDado2 >= sumaDado3) {
-            primero = "Dado2 (" + sumaDado2 + ")";
+            primero = "Dado2 ( " + sumaDado2 + " )";
             if (sumaDado1 >= sumaDado3) {
-                segundo = "Dado1( " + sumaDado1 + ")";
-                tercero = "Dado3 ( " + sumaDado3 + ")";
+                segundo = "Dado1 ( " + sumaDado1 + " )";
+                tercero = "Dado3 ( " + sumaDado3 + " )";
             } else {
-                segundo = "Dado3 ( " + sumaDado3 + ")";
-                tercero = "Dado1( " + sumaDado1 + ")";
+                segundo = "Dado3 ( " + sumaDado3 + " )";
+                tercero = "Dado1 ( " + sumaDado1 + " )";
             }
         } else {
-            primero = "Dado3 (" + sumaDado3 + ")";
+            primero = "Dado3 ( " + sumaDado3 + " )";
             if (sumaDado1 >= sumaDado2) {
-                segundo = "Dado1 ( " + sumaDado1 + ")";
-                tercero = "Dado2 ( " + sumaDado2 + ")";
+                segundo = "Dado1 ( " + sumaDado1 + " )";
+                tercero = "Dado2 ( " + sumaDado2 + " )";
             } else {
-                segundo = "Dado2 ( " + sumaDado2 + ")";
-                tercero = "Dado1 ( " + sumaDado1 + ")";
+                segundo = "Dado2 ( " + sumaDado2 + " )";
+                tercero = "Dado1 ( " + sumaDado1 + " )";
             }
         }
         System.out.println(" Tabla de Posiciones: ");
@@ -187,4 +188,42 @@ public class Principal {
             System.out.println((i+1)+"°Lugar: "+ pilotos[i]+ " - Tiempo: " + tiempos[i]+ "s");
         }
     }
+    public  static void JuegoDados(){
+        Random puntos= new Random();
+        int jugador1 = 0;
+        int jugador2 =0;
+        int ronda=1;
+        System.out.println("====JUEGO DE DADOS=====");
+        System.out.println("REGLAS DEL JUEGO: Gana el primero que logre una diferencia de 3 o mas puntos");
+        while(Math.abs(jugador1-jugador2)<3){
+            System.out.println("Ronda: "+ ronda+ "----");
+            //jugador 1
+            int dado1= puntos.nextInt((6-1)+1)+1;
+            if (dado1==1){
+            jugador1-=1;
+        } else if (dado1==6) {
+                jugador1+=6;
+            } else {
+                jugador1+=dado1;
+            }
+            //jugador 2
+            int dado2= puntos.nextInt((6-1)+1)+1;
+            if (dado2==1){
+                jugador2-=1;
+            } else if (dado2==6) {
+                jugador2+=6;
+            } else {
+                jugador2+=dado2;
+            }
+            System.out.println(" Jugador 1 lanzo: "+dado1+ " -->>> Total: "+jugador1);
+            System.out.println(" Jugador 2 lanzo: " +dado2+ " -->>> Total: "+jugador2);
+            ronda++;
+        }
+        System.out.println(" \n/////FIN DEL JUEGO///// ");
+        if (jugador1>jugador2){
+            System.out.println(" Gano jugador 1 con "+jugador1+" Puntos contra "+jugador2);
+        } else {
+            System.out.println("Gano jugador 2 con " + jugador2 + " Puntos contra " + jugador1);
+        }
+        }
 }
